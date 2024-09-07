@@ -1,4 +1,4 @@
-qq#!/bin/bash
+#!/bin/bash
 
 # Define color codes
 r="\033[1;91m"
