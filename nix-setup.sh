@@ -1,4 +1,4 @@
-#!/bin/bash
+qq#!/bin/bash
 
 # Define color codes
 r="\033[1;91m"
@@ -95,7 +95,7 @@ checking() {
 
     fi    
 
-    if ! [ -d "storage" ] || ! [ -x "$(command -v nethunter)" ]; then
+    if ! [ -d "/$HOME/storage" ] || ! [ -f "$(command -v nethunter)" ]; then
         echo -e "        ${b}Storage Dir...............${r}[${y}☓${r}]"
         sleep 0.8
         echo -e "        ${b}Nethunter.................${r}[${y}☓${r}]\n"
