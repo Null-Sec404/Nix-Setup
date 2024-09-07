@@ -9,6 +9,8 @@
 This script is for fresh termux installed and checking packages is not install.
 and also install nethunter rootless for you.
 
-
+# Update
+7/9/24
+1.0 - Release (fixing it)
 
 p.s you know what? NiX is just my new name
