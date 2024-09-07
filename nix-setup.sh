@@ -124,11 +124,13 @@ main() {
       			
            		 	echo -e $g"Kali Linux detected.\n"
            		 	
-           		 	apt update && apt full-upgrade -y && apt install -y kali-tools-* python3 wget curl perl axel tor php apache2 nmap dnsutils coreutils golang clang
+           		 	apt update && apt full-upgrade -y && apt install -y kali-tools-* python3 wget curl perl axel tor php apache2 nmap dnsutils coreutils golang clang figlet toilet neofetch crunch
+           		 	pip install bs4 requests lolcat cowsay dnspython python-nmap python-whois tornet sqlmap termcolor colored
 
        		 		elif [ -d "$PREFIX" ]; then
            	 			echo -e $r"Termux detected."
-           	 			apt update && apt full-upgrade -y && apt install -y python3 wget curl perl axel tor php apache2 nmap dnsutils coreutils golang clang
+          		 	apt update && apt full-upgrade -y && apt install -y python3 wget curl perl axel tor php apache2 nmap dnsutils coreutils golang clang figlet toilet neofetch phroot crunch
+           		 	pip install bs4 requests lolcat cowsay dnspython python-nmap python-whois tornet sqlmap termcolor colored
            	 			wget -O nethunter https://offs.ec/2MceZWr
            	 			chmod +x nethunter
            	 			
@@ -187,4 +189,3 @@ main() {
 }
 
 checking
-
