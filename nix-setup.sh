@@ -83,14 +83,14 @@ checking() {
 
 	echo -e "        ${b}Ifconfig...................${r}[${y}☓${r}]"
 	sleep 0.8
-	echo -e "        ${b}Proot.....................${r}[${y}☓${r}]"
+	echo -e "        ${b}Proot......................${r}[${y}☓${r}]"
 	sleep 0.8
 
 	else
 
 	echo -e "        ${b}Ifconfig..................${r}[${g}✓${r}]"
 	sleep 0.8
-	echo -e "        ${b}Proot....................${r}[${g}✓${r}]"
+	echo -e "        ${b}Proot.....................${r}[${g}✓${r}]"
 	sleep 0.8
 
     fi    
