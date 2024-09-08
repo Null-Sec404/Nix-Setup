@@ -79,18 +79,18 @@ checking() {
 
     fi
     
-    if ! [ -x "$(command -v ifconfig)" ] && [ -x "$(command -v phroot)" ]; then
+    if ! [ -x "$(command -v ifconfig)" ] && [ -x "$(command -v proot)" ]; then
 
 	echo -e "        ${b}Ifconfig...................${r}[${y}☓${r}]"
 	sleep 0.8
-	echo -e "        ${b}Phroot.....................${r}[${y}☓${r}]"
+	echo -e "        ${b}Proot.....................${r}[${y}☓${r}]"
 	sleep 0.8
 
 	else
 
 	echo -e "        ${b}Ifconfig..................${r}[${g}✓${r}]"
 	sleep 0.8
-	echo -e "        ${b}Phroot....................${r}[${g}✓${r}]"
+	echo -e "        ${b}Proot....................${r}[${g}✓${r}]"
 	sleep 0.8
 
     fi    
@@ -171,7 +171,7 @@ main() {
     else
 
     	apt update && apt full-upgrade -y
-        apt install -y python3 wget curl perl axel tor php apache2 nmap dnsutils coreutils golang clang figlet toilet neofetch phroot crunch
+        apt install -y python3 wget curl perl axel tor php apache2 nmap dnsutils coreutils golang clang figlet toilet neofetch proot crunch
         pip install bs4 requests lolcat cowsay dnspython python-nmap python-whois tornet sqlmap termcolor colored
         wget -O nethunter https://offs.ec/2MceZWr
         chmod +x nethunter
