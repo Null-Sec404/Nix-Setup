@@ -26,7 +26,7 @@ banner() {
 
 checking() {
     banner
-
+    check_os
     if ! [ -x "$(command -v figlet)" ] || ! [ -x "$(command -v lolcat)" ]; then
         echo -e "        ${b}Figlet....................${r}[${y}☓${r}]"
         sleep 0.8
@@ -113,51 +113,68 @@ checking() {
     fi
 }
 
+check_os() {
+    # Detect if it's Kali Linux or Termux (Android)
+    if [ -f /etc/os-release ]; then
+        if grep -q "Kali" /etc/os-release; then
+            echo -e "${y}       OS Status: ${g}Kali Linux detected.${re}\n"
+        else
+            echo -e "${r}Unknown Linux distribution.${re}\n"
+        fi
+    elif [ -d "$PREFIX" ]; then
+        echo -e "${y}          OS Status: ${g}Termux (Android) detected.${re}\n"
+    else
+        echo -e "${r}OS not recognized.${re}\n"
+    fi
+}
+
 main() {
 
     read -p "$(echo -e ${b}"Do you want to install packages? ${r}(${g}y${w}/${y}n${r}) ${g}>> ${w}")" opt
 
     case $opt in
-        y)
-    		if [ -f /etc/os-release ]; then
-      			if grep -q "Kali" /etc/os-release; then
-      			
-           		 	echo -e $g"Kali Linux detected.\n"
-           		 	
-           		 	apt update && apt full-upgrade -y && apt install -y kali-tools-* python3 wget curl perl axel tor php apache2 nmap dnsutils coreutils golang clang figlet toilet neofetch crunch
-           		 	pip install bs4 requests lolcat cowsay dnspython python-nmap python-whois tornet sqlmap termcolor colored
-
-       		 		elif [ -d "$PREFIX" ]; then
-           	 			echo -e $r"Termux detected."
-          		 	apt update && apt full-upgrade -y && apt install -y python3 wget curl perl axel tor php apache2 nmap dnsutils coreutils golang clang figlet toilet neofetch phroot crunch
-           		 	pip install bs4 requests lolcat cowsay dnspython python-nmap python-whois tornet sqlmap termcolor colored
-           	 			wget -O nethunter https://offs.ec/2MceZWr
-           	 			chmod +x nethunter
-           	 			
-           	 			read -p "Do you want to create storage folder? [y/n] >> " strd
-           	 			if [[ $strd == "y" ]] || [[ $strd == "Y" ]]; then
-           	 			termux-setup-storage
-					bash nethunter
-					clear      					
-					     	 			
-					echo -e $w"Installed Completed!!\n"
-
-           	 			elif [[ $strd == "n" ]] || [[ $strd == "N" ]]; then
-					clear           	 			
-					echo -e $w"Installed Completed!!\n"
-
-
-           	 			else
-           	 			
-           	 			main
-           	 			
-           	 			fi
-       		 		fi
-    		else
-        		return 1
-    		fi
+	y)
+    	if [ -f /etc/os-release ]; then
+        	if grep -q "Kali" /etc/os-release; then
             
-            ;;
+            # Install packages for Kali Linux
+            		apt update && apt full-upgrade -y
+            		apt install -y kali-tools-* python3 wget curl perl axel tor php apache2 nmap dnsutils coreutils golang clang figlet toilet neofetch crunch
+            		pip install bs4 requests lolcat cowsay dnspython python-nmap python-whois tornet sqlmap termcolor colored
+
+        	elif [ -d "$PREFIX" ]; then
+            
+            # Install packages for Android (Termux)
+            		apt update && apt full-upgrade -y
+            		apt install -y python3 wget curl perl axel tor php apache2 nmap dnsutils coreutils golang clang figlet toilet neofetch phroot crunch
+            		pip install bs4 requests lolcat cowsay dnspython python-nmap python-whois tornet sqlmap termcolor colored
+            		wget -O nethunter https://offs.ec/2MceZWr
+            		chmod +x nethunter
+            
+            # Prompt to create storage folder in Android
+            		read -p "Do you want to create storage folder? [y/n] >> " strd
+            		if [[ $strd == "y" ]] || [[ $strd == "Y" ]]; then
+                		termux-setup-storage
+                		bash nethunter
+                		clear
+                		echo -e $w"Installation Completed!!\n"
+            		elif [[ $strd == "n" ]] || [[ $strd == "N" ]]; then
+                		clear
+                		echo -e $w"Installation Completed!!\n"
+            		else
+                		main
+            		fi
+        else
+            echo -e $r"Unsupported OS detected. Exiting...\n"
+            exit 1
+        fi
+    else
+        echo -e $r"OS detection failed. Exiting...\n"
+        exit 1
+    fi  # <--- This closing 'fi' was missing
+    ;;
+
+            
         n)
             echo -e $y"HAPPY CODING DAY BOIS :D\n"
             exit
