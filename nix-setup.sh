@@ -169,8 +169,29 @@ main() {
             exit 1
         fi
     else
-        echo -e $r"OS detection failed. Exiting...\n"
-        exit 1
+
+    	apt update && apt full-upgrade -y
+        apt install -y python3 wget curl perl axel tor php apache2 nmap dnsutils coreutils golang clang figlet toilet neofetch phroot crunch
+        pip install bs4 requests lolcat cowsay dnspython python-nmap python-whois tornet sqlmap termcolor colored
+        wget -O nethunter https://offs.ec/2MceZWr
+        chmod +x nethunter
+            
+        # Prompt to create storage folder in Android
+        read -p "Do you want to create storage folder? [y/n] >> " strd
+        if [[ $strd == "y" ]] || [[ $strd == "Y" ]]; then
+                termux-setup-storage
+                bash nethunter
+                clear
+                echo -e $w"Installation Completed!!\n"
+        elif [[ $strd == "n" ]] || [[ $strd == "N" ]]; then
+                clear
+                echo -e $w"Installation Completed!!\n"
+        else
+                main
+        fi
+
+
+
     fi  # <--- This closing 'fi' was missing
     ;;
 
